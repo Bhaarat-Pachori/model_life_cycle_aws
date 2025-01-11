@@ -3,7 +3,8 @@ name: Train and Build
 on:
   push:
     branches:
-      - main  # Trigger on pushes to the main branch
+      - main  # Trigger on pushes to main
+  workflow_dispatch:  # Enable manual triggering
 
 jobs:
   train-and-build:
