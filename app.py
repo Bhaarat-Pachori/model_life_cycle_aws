@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 # Load your trained model
-with open('reviews.pkl', 'rb') as f:
+with open('nb_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # load the vectorizer too
@@ -19,6 +19,7 @@ def predict():
 
     new_data_features = loaded_vectorizer.transform(features)
 
+    # for classifying single review we have to reshape the i/p
     new_data_features = new_data_features.reshape(1, -1)
 
     # Make prediction using the loaded model

@@ -1,3 +1,5 @@
+import pickle
+
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -55,3 +57,11 @@ nb_f1 = f1_score(y_test, nb_predictions)
 # Print Naive Bayes Results
 print("Naive Bayes Metrics:")
 print(f"Accuracy: {nb_accuracy}\nPrecision: {nb_precision}\nRecall: {nb_recall}\nF1 Score: {nb_f1}")
+
+# saving the model
+with open('nb_model.pkl', 'wb') as file:
+    pickle.dump(nb_model, file)
+
+# saving the vectorizer
+with open('nb_tfidf.pkl', 'wb') as file:
+    pickle.dump(vectorizer, file)
