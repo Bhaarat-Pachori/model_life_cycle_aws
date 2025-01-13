@@ -29,7 +29,7 @@ jobs:
         run: docker build -t your-account-id.dkr.ecr.your-region.amazonaws.com/my-nlp-model:latest .
 
       - name: Configure AWS credentials
-        uses: actions/configure-aws-credentials@v1
+        uses: actions/configure-aws-credentials@v3
         with:
           role-to-assume: arn:aws:iam::575390496000:role/github-actions-ecr-role
           aws-region: us-east-1
