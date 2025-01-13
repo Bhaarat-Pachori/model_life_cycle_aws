@@ -29,8 +29,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
-          IMAGE_TAG: latest
-        run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
         # run: docker build -t 575390496000.dkr.ecr.us-east-1.amazonaws.com/my-nlp-repo:latest .
 
       - name: Configure AWS credentials
@@ -49,6 +48,5 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
-          IMAGE_TAG: latest
         # run: docker push 575390496000.dkr.ecr.us-east-1.amazonaws.com/my-nlp-repo
-        run: docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        run: docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
