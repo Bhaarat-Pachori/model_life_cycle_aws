@@ -12,4 +12,5 @@ ENV VECTORIZER_PATH=/app/tfidf.pkl
 
 EXPOSE 8080
 
-CMD ["python", "app.py"]
+ENTRYPOINT [ "python", "app.py"]
+# CMD [ "python", "app.py"]
