@@ -26,17 +26,31 @@ jobs:
         run: python train.py  # This will create your model and vectorizer pickle files
 
       - name: Build the Docker image
-        run: docker build -t 575390496000.dkr.ecr.us-east-1.amazonaws.com/my-nlp-repo:latest .
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
+          IMAGE_TAG: latest
+        run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        echo "Building Docker image..."
+        # run: docker build -t 575390496000.dkr.ecr.us-east-1.amazonaws.com/my-nlp-repo:latest .
 
       - name: Configure AWS credentials
-        uses: actions/configure-aws-credentials@v3
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::575390496000:role/github-actions-ecr-role
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+          # role-to-assume: arn:aws:iam::575390496000:role/github-actions-ecr-role
 
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Push the Docker image to ECR
-        run: docker push 575390496000.dkr.ecr.us-east-1.amazonaws.com/my-nlp-repo
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
+          IMAGE_TAG: latest
+        # run: docker push 575390496000.dkr.ecr.us-east-1.amazonaws.com/my-nlp-repo
+        run: docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "Pushing image to ECR..."
