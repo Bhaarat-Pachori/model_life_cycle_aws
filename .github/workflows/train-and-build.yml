@@ -28,7 +28,8 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-        aws-region: us-east-1
+        with:
+          region: us-east-1
 
       - name: Build the Docker image
         env:
