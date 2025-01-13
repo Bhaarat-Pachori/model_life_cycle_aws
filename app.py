@@ -11,6 +11,10 @@ with open('nb_model.pkl', 'rb') as f:
 with open('nb_tfidf.pkl', 'rb') as f:
     loaded_vectorizer = pickle.load(f)
 
+@app.route('/ping', methods=['GET'])
+def ping():
+    return jsonify({'message': 'pong'})
+
 # routes to interact with the model
 @app.route('/predict', methods=['POST'])
 def predict():
