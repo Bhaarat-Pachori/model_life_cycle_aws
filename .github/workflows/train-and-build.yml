@@ -42,6 +42,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPO_NAME }}
         # run: docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+        # run: docker build -t 575390496000.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY:${{ github.sha }} .
         run: docker build -t 575390496000.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY:latest .
 
       - name: Push the Docker image to ECR
@@ -49,4 +50,5 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPO_NAME }}
         # run: docker push 575390496000.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY
+        # run: docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }}
         run: docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
