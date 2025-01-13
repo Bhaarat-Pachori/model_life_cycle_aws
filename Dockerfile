@@ -7,8 +7,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ENV MODEL_PATH=/app/reviews.pkl
-ENV VECTORIZER_PATH=/app/tfidf.pkl
+ENV MODEL_PATH=/app/nb_model.pkl
+ENV VECTORIZER_PATH=/app/nb_tfidf.pkl
 
 EXPOSE 8080
 

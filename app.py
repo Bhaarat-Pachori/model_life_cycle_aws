@@ -8,7 +8,7 @@ with open('nb_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # load the vectorizer too
-with open('tfidf.pkl', 'rb') as f:
+with open('nb_tfidf.pkl', 'rb') as f:
     loaded_vectorizer = pickle.load(f)
 
 # routes to interact with the model
