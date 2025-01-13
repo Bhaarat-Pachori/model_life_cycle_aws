@@ -26,7 +26,7 @@ jobs:
         run: python train.py  # This will create your model and vectorizer pickle files
 
       - name: Build the Docker image
-        run: docker build -t your-account-id.dkr.ecr.your-region.amazonaws.com/my-nlp-model:latest .
+        run: docker build -t 575390496000.dkr.ecr.us-east-1.amazonaws.com/my-nlp-repo:latest .
 
       - name: Configure AWS credentials
         uses: actions/configure-aws-credentials@v3
@@ -39,4 +39,4 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - name: Push the Docker image to ECR
-        run: docker push your-account-id.dkr.ecr.your-region.amazonaws.com/my-nlp-model:latest
+        run: docker push 575390496000.dkr.ecr.us-east-1.amazonaws.com/my-nlp-repo
